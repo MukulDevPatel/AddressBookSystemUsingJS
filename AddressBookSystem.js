@@ -86,6 +86,20 @@ class AddressBook {
             throw new Error("Contact not found: ${FirstName} ${LastName}");
         }
     }
+
+    // UC5
+    deleteContact(FirstName, LastName) {
+        const index = this.contacts.findIndex(
+          (contact) =>
+            contact.FirstName === FirstName && contact.LastName === LastName
+        );
+        if (index !== -1) {
+          this.contacts.splice(index, 1);
+          console.log("Contact deleted successfully");
+        } else {
+          console.log("Contact not found");
+        }
+    }
 }
 
 const newContacts = new AddressBook();
@@ -143,3 +157,7 @@ if(existingContact){
 }else{
     console.log("Contact not found");
 }
+
+// UC5
+newContacts.deleteContact("Neha", "Dheer");
+console.log(newContacts.contacts);
