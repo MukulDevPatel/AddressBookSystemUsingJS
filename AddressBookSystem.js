@@ -62,21 +62,21 @@ class AddressBookSystem{
 
 // UC3
 class AddressBook {
-    constructor(){
-        this.contacts = [];
-    }
+  constructor(){
+    this.contacts = [];
+  }
 
-    addContact (contact){
-        const isDuplicate = this.contacts.some(
-            (existingContact) => 
-            existingContact.FirstName === contact.FirstName &&
-            existingContact.LastName === contact.LastName
-        );
-        if(isDuplicate){
-            throw new Error("Duplicate entry. Contact already exists.");
-        }
-        this.contacts.push(contact);
+  addContact (contact){
+    const isDuplicate = this.contacts.some(
+      (existingContact) => 
+        existingContact.FirstName === contact.FirstName &&
+          existingContact.LastName === contact.LastName
+    );
+    if(isDuplicate){
+      throw new Error("Duplicate entry. Contact already exists.");
     }
+    this.contacts.push(contact);
+  }
 
     // UC4
     findContactByName(FirstName, LastName) {
@@ -112,7 +112,14 @@ class AddressBook {
     // UC6
     getContactCount() {
         return this.contacts.length;
-      }
+    }
+
+    // UC8
+    searchContacts(searchField, value) {
+        return this.contacts.filter((contact) =>
+          contact[searchField].toLowerCase().includes(value.toLowerCase())
+        );
+    }
 }
 
 const newContacts = new AddressBook();
@@ -196,3 +203,10 @@ try{
 }catch(error){
     console.log(error.message);
 }
+
+// UC8
+const contactsInCity = newContacts.searchContacts("City", "Chennai");
+console.log("Contacts in Chennai:", contactsInCity);
+
+const contactsInState = newContacts.searchContacts("State", "Maharshtra");
+console.log("Contacts in Maharshtra:", contactsInState);
