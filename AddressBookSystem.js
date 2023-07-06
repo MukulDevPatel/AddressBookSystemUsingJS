@@ -67,6 +67,14 @@ class AddressBook {
     }
 
     addContact (contact){
+        const isDuplicate = this.contacts.some(
+            (existingContact) => 
+            existingContact.FirstName === contact.FirstName &&
+            existingContact.LastName === contact.LastName
+        );
+        if(isDuplicate){
+            throw new Error("Duplicate entry. Contact already exists.");
+        }
         this.contacts.push(contact);
     }
 
@@ -170,3 +178,21 @@ console.log(newContacts.contacts);
 // UC6
 const contactCount = newContacts.getContactCount();
 console.log("Number of contacts: ",contactCount);
+
+// UC7
+const conatct4 = new AddressBookSystem(
+    "Saurabh",
+    "Kumar",
+    "Sector 4 New st",
+    "Chennai",
+    "Tamilnadu",
+    "445345",
+    "91-6462254686",
+    "dev@gmail.com"
+)
+try{
+    newContacts.addContact(conatct4);
+    console.log(newContacts.contacts);
+}catch(error){
+    console.log(error.message);
+}
