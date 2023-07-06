@@ -100,6 +100,11 @@ class AddressBook {
           console.log("Contact not found");
         }
     }
+
+    // UC6
+    getContactCount() {
+        return this.contacts.length;
+      }
 }
 
 const newContacts = new AddressBook();
@@ -161,3 +166,7 @@ if(existingContact){
 // UC5
 newContacts.deleteContact("Neha", "Dheer");
 console.log(newContacts.contacts);
+
+// UC6
+const contactCount = newContacts.getContactCount();
+console.log("Number of contacts: ",contactCount);
