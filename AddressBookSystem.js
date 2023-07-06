@@ -1,6 +1,6 @@
-//UC1
+//UC2
 class AddressBookSystem{
-    FistName;
+    FirstName;
     LastName;
     Address;
     City;
@@ -60,7 +60,19 @@ class AddressBookSystem{
     }
 }
 
-let newConatct = new AddressBookSystem(
+// UC3
+class AddressBook {
+    constructor(){
+        this.contacts = [];
+    }
+    addContact (contact){
+        this.contacts.push(contact);
+    }
+}
+
+const newContacts = new AddressBook();
+
+const conatct1 = new AddressBookSystem(
     "Mukul",
     "Patel",
     "Andheri",
@@ -71,4 +83,32 @@ let newConatct = new AddressBookSystem(
     "patel@gmail.com"
 
 );
-console.log(newConatct);
+
+const conatct2 = new AddressBookSystem(
+    "Saurabh",
+    "Kumar",
+    "Sector 4 New st",
+    "Chennai",
+    "Tamilnadu",
+    "445345",
+    "91-6462254686",
+    "dev@gmail.com"
+
+);
+
+const conatct3 = new AddressBookSystem(
+    "Neha",
+    "Dheer",
+    "Sector 6 Old market",
+    "Bhopal",
+    "MadhyPradesh",
+    "486345",
+    "91-6452254686",
+    "neha@gmail.com"
+
+);
+newContacts.addContact(conatct1);
+newContacts.addContact(conatct2);
+newContacts.addContact(conatct3);
+
+console.log(newContacts.contacts);
