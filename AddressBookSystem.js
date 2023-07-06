@@ -65,8 +65,26 @@ class AddressBook {
     constructor(){
         this.contacts = [];
     }
+
     addContact (contact){
         this.contacts.push(contact);
+    }
+
+    // UC4
+    findContactByName(FirstName, LastName) {
+        return this.contacts.find(
+          (contact) =>
+            contact.FirstName === FirstName && contact.LastName === LastName
+        );
+    }
+    
+    editContactByName(FirstName, LastName, updatedContact) {
+        const contact = this.findContactByName(FirstName,LastName);
+        if(contact) {
+            Object.assign(contact,updatedContact);
+        }else{
+            throw new Error("Contact not found: ${FirstName} ${LastName}");
+        }
     }
 }
 
@@ -112,3 +130,16 @@ newContacts.addContact(conatct2);
 newContacts.addContact(conatct3);
 
 console.log(newContacts.contacts);
+
+// UC4
+const existingContact = newContacts.findContactByName("Neha", "Dheer");
+if(existingContact){
+    const updatedContact = {
+        Zip: "485345",
+        PhoneNumber: "91-6452154686",
+    };
+    newContacts.editContactByName("Neha", "Dheer",updatedContact);
+    console.log("Contact Update Successfully: ",existingContact);
+}else{
+    console.log("Contact not found");
+}
