@@ -128,6 +128,16 @@ class AddressBook {
         console.log(`${contact.FirstName} ${contact.LastName}`);
       });
     }
+
+    // UC10
+    getContactCountByLocation(location) {
+      const contactCountByLocation = this.contacts.reduce((count, contact) => {
+        const key = contact[location].toLowerCase();
+        count[key] = (count[key] || 0) + 1;
+        return count;
+      }, {});
+      return contactCountByLocation;
+    }
 }
 
 const newContacts = new AddressBook();
@@ -235,3 +245,10 @@ console.log("Contacts in Maharshtra:", contactsInState);
 // UC9
 newContacts.viewContactsByLocation("State","MadhyPradesh");
 newContacts.viewContactsByLocation("City","Bhopal");
+
+// UC10
+const contactCountByCity = newContacts.getContactCountByLocation("City");
+console.log("Contact count by city:", contactCountByCity);
+
+const contactCountByState = newContacts.getContactCountByLocation("State");
+console.log("Contact count by state:", contactCountByState);
