@@ -120,6 +120,14 @@ class AddressBook {
           contact[searchField].toLowerCase().includes(value.toLowerCase())
         );
     }
+
+    // UC9
+    viewContactsByLocation(location, searchKey) {
+      const filteredContacts = this.searchContacts(location, searchKey);
+      filteredContacts.forEach((contact) => {
+        console.log(`${contact.FirstName} ${contact.LastName}`);
+      });
+    }
 }
 
 const newContacts = new AddressBook();
@@ -159,9 +167,22 @@ const conatct3 = new AddressBookSystem(
     "neha@gmail.com"
 
 );
+
+const conatct5 = new AddressBookSystem(
+  "Aakriti",
+  "Royal",
+  "Sector 5 New market",
+  "Bhopal",
+  "MadhyPradesh",
+  "486345",
+  "91-6452254686",
+  "neha@gmail.com"
+
+);
 newContacts.addContact(conatct1);
 newContacts.addContact(conatct2);
 newContacts.addContact(conatct3);
+newContacts.addContact(conatct5);
 
 console.log(newContacts.contacts);
 
@@ -210,3 +231,7 @@ console.log("Contacts in Chennai:", contactsInCity);
 
 const contactsInState = newContacts.searchContacts("State", "Maharshtra");
 console.log("Contacts in Maharshtra:", contactsInState);
+
+// UC9
+newContacts.viewContactsByLocation("State","MadhyPradesh");
+newContacts.viewContactsByLocation("City","Bhopal");
