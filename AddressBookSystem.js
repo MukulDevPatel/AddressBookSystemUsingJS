@@ -58,6 +58,10 @@ class AddressBookSystem{
         }
         this.Email = Email;
     }
+
+    toString() {
+      return `${this.FirstName} ${this.LastName}\nAddress: ${this.Address}\nCity: ${this.City}\nState: ${this.State}\nZip: ${this.Zip}\nPhone: ${this.PhoneNumber}\nEmail: ${this.Email}`;
+    }
 }
 
 // UC3
@@ -137,6 +141,25 @@ class AddressBook {
         return count;
       }, {});
       return contactCountByLocation;
+    }
+
+    // UC11
+    sortContactsByName() {
+      this.contacts.sort((a, b) => {
+        const nameA = `${a.FirstName} ${a.LastName}`.toLowerCase();
+        const nameB = `${b.FirstName} ${b.LastName}`.toLowerCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+  
+    toString() {
+      return this.contacts.map((contact) => contact.toString()).join("\n\n");
     }
 }
 
@@ -252,3 +275,8 @@ console.log("Contact count by city:", contactCountByCity);
 
 const contactCountByState = newContacts.getContactCountByLocation("State");
 console.log("Contact count by state:", contactCountByState);
+
+// UC11
+newContacts.sortContactsByName();
+console.log("Contacts sorted by name:");
+console.log(newContacts.toString());
