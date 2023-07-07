@@ -157,6 +157,20 @@ class AddressBook {
         return 0;
       });
     }
+
+    // UC12
+    sortContactsByCity() {
+      this.contacts.sort((a, b) => a.City.localeCompare(b.City));
+    }
+  
+    sortContactsByState() {
+      this.contacts.sort((a, b) => a.State.localeCompare(b.State));
+    }
+  
+    sortContactsByZip() {
+      this.contacts.sort((a, b) => a.Zip.localeCompare(b.Zip));
+    }
+  
   
     toString() {
       return this.contacts.map((contact) => contact.toString()).join("\n\n");
@@ -278,5 +292,18 @@ console.log("Contact count by state:", contactCountByState);
 
 // UC11
 newContacts.sortContactsByName();
-console.log("Contacts sorted by name:");
+console.log("\nContacts sorted by name:");
+console.log(newContacts.toString());
+
+// UC12
+newContacts.sortContactsByCity();
+console.log("\nContacts sorted by city:");
+console.log(newContacts.toString());
+
+newContacts.sortContactsByState();
+console.log("\nContacts sorted by state:");
+console.log(newContacts.toString());
+
+newContacts.sortContactsByZip();
+console.log("\nContacts sorted by zip:");
 console.log(newContacts.toString());
